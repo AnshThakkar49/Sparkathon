@@ -1,15 +1,14 @@
+from flask import Flask, request, render_template, jsonify
 import pickle
-import numpy as np
-from flask import Flask, render_template, request
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
 
-# Load the model
+app = Flask(__name__)
+
+# Load the trained model and scaler
 with open('best_sales_prediction_model.pkl', 'rb') as file:
     rf_model = pickle.load(file)
 
-# Check what was loaded
-print(f"Loaded object type: {type(rf_model)}")
-
-app = Flask(__name__)
 
 @app.route('/')
 def index():
@@ -17,24 +16,44 @@ def index():
 
 @app.route('/predict', methods=['POST'])
 def prediction_page():
-    year = request.form['year']
-    month = request.form['month']
-    week = request.form['week']
-
-    # Convert input data to the required format
-    arr = np.array([[week, month, year]])
-    
-    # Make sure to handle the prediction correctly
     try:
-        prediction_value = rf_model.predict(arr)
-    except AttributeError as e:
-        return f"Error: {str(e)}"
-    
-    return render_template('result.html', 
-                           year=year, 
-                           month=month, 
-                           week=week, 
-                           prediction_value=prediction_value[0])
+        # Extract input values from the form
+        store = int(request.form['store'])
+        dept = int(request.form['dept'])
+        is_holiday = int(request.form['is_holiday'])
+        temperature = float(request.form['temperature'])
+        fuel_price = float(request.form['fuel_price'])
+        cpi = float(request.form['cpi'])
+        unemployment = float(request.form['unemployment'])
+        year = int(request.form['year'])
+        month = int(request.form['month'])
+        week = int(request.form['week'])
+
+        # Create a DataFrame from the inputs
+        input_data = pd.DataFrame({
+            'Store': [store],
+            'Dept': [dept],
+            'IsHoliday': [is_holiday],
+            'Temperature': [temperature],
+            'Fuel_Price': [fuel_price],
+            'CPI': [cpi],
+            'Unemployment': [unemployment],
+            'Year': [year],
+            'Month': [month],
+            'Week': [week]
+        })
+
+        # Scale the input data
+        scaler=StandardScaler()
+        input_data_scaled = scaler.transform(input_data)
+
+        # Make prediction
+        prediction = rf_model.predict(input_data_scaled)[0]
+
+        return render_template('index.html', prediction=prediction)
+
+    except Exception as e:
+        return str(e)
 
 if __name__ == '__main__':
     app.run(debug=True)
