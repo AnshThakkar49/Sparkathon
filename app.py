@@ -26,7 +26,7 @@ def login():
             return 'Invalid credentials'
     return render_template('login.html')
 
-@app.route('/predict', methods=['GET', 'POST'])
+@app.route('/Sparkathon/Walmart.ipynb', methods=['GET', 'POST'])
 def predict():
     if 'logged_in' in session:
         if request.method == 'POST':
@@ -34,7 +34,7 @@ def predict():
             data = np.array([float(x) for x in request.form['data'].split(',')]).reshape(1, -1)
             result = predict_sales(model, data)
             return f'Sales Prediction: {result[0]}'
-        return render_template('predict.html')
+        return render_template('/Sparkathon/tempelates/prediction_page.html')
     return redirect(url_for('login'))
 
 @app.route('/logout')
@@ -44,5 +44,3 @@ def logout():
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
-
-

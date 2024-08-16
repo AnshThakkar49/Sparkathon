@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Prediction</title>
+    <style>
+        body {
+            background-color: #f0f8ff; /* Light blue background */
+            font-family: Arial, sans-serif;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #004080; /* Dark blue text */
+        }
+
+        form {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        label {
+            color: #004080; /* Dark blue text */
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #004080; /* Dark blue border */
+            margin-bottom: 20px;
+            background-color: #f0f8ff; /* Light blue background for dropdowns */
+            color: #004080; /* Dark blue text */
+        }
+
+        input[type="submit"] {
+            background-color: #004080; /* Dark blue button */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #002850; /* Darker blue on hover */
+        }
+
+        #monthOptions, #yearOptions {
+            display: none;
+        }
+    </style>
+    <script>
+        function updateOptions() {
+            const predictionType = document.getElementById('predictionType').value;
+            const monthSelect = document.getElementById('monthOptions');
+            const yearSelect = document.getElementById('yearOptions');
+            
+            if (predictionType === 'monthly') {
+                monthSelect.style.display = 'block';
+                yearSelect.style.display = 'none';
+            } else if (predictionType === 'yearly') {
+                monthSelect.style.display = 'none';
+                yearSelect.style.display = 'block';
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <h2>Sales Prediction</h2>
+
+    <form action="/predict" method="post">
+        <label for="predictionType">Choose Prediction Type:</label>
+        <select id="predictionType" name="predictionType" onchange="updateOptions()">
+            <option value="monthly">Monthly</option>
+            <option value="yearly">Yearly</option>
+        </select>
+
+        <div id="monthOptions">
+            <label for="month">Select Month:</label>
+            <select id="month" name="month">
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
+            </select>
+        </div>
+
+        <div id="yearOptions">
+            <label for="year">Select Year:</label>
+            <select id="year" name="year">
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+                <option value="2029">2029</option>
+                <option value="2030">2030</option>
+            </select>
+        </div>
+
+        <input type="submit" value="Predict">
+    </form>
+
+</body>
+</html>
+

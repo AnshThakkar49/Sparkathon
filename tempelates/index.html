@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendation and Information</title>
+    <style>
+      *{
+        margin: auto;
+        padding: auto;
+      }
+      body 
+      {
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        color: #333;
+        background: linear-gradient(to right, #ffffff, #e3f2fd);
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Top section */
+      .top {
+        background-color: #0d47a1;
+        color: #fff;
+        padding: 10px 20px;
+        text-align: right;
+        font-size: 0.9em;
+      }
+      
+      .top a {
+        color: #fff;
+        margin: 0 10px;
+        text-decoration: none;
+      }
+      
+      .top a:hover {
+        text-decoration: underline;
+      }
+      
+      /* Logo and navigation */
+      .logo {
+        text-align: center;
+        margin: 40px 0;
+      }
+      
+      .logo img {
+        max-width: 600px;
+        vertical-align: middle;
+      }
+      
+      .logo h1 {
+        display: inline-block;
+        font-size: 2.5em;
+        margin-left: 20px;
+        vertical-align: middle;
+        color: #0d47a1;
+        font-weight: bold;
+      }
+      
+      /* Middle section */
+      .middle {
+        text-align: center;
+        margin: 20px 0;
+      }
+      
+      .middle p {
+        font-size: 1.5em;
+        color: #0d47a1;
+      }
+      
+      /* Form section */
+      .form-section {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 40px 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+      
+      .form-section h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2.5em;
+        color: #333;
+      }
+      
+      .form-section form {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .form-section label {
+        margin-bottom: 10px;
+        font-size: 1.2em;
+        color: #0d47a1;
+      }
+      
+      .form-section input[type="text"], .form-section input[type="number"], .form-section select {
+        margin-bottom: 30px;
+        padding: 10px;
+        font-size: 1em;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      
+      .form-section .checkbox-group {
+        margin-bottom: 20px;
+      }
+      
+      .form-section .checkbox-group label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      
+      .form-section button {
+        margin-top: 30px;
+        padding: 15px;
+        font-size: 1.2em;
+        background-color: #0d47a1;
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+      }
+      
+      .form-section button:hover {
+        background-color: #0a3781;
+      }
+  
+  .top a:hover {
+    text-decoration: underline;
+  }
+  .logo {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .logo img {
+    width: 100px; /* Adjust the size as needed */
+    height: auto;
+    vertical-align: middle;
+  }
+  
+  .logo table {
+    margin: 0 auto;
+  }
+  
+  .logo table td {
+    padding: 10px;
+  }
+  
+  .logo a {
+    color: #0d47a1;
+    text-decoration: none;
+    font-size: 1.2em;
+  }
+  
+  .logo a:hover {
+    color: #2FA5EB;
+    border-bottom: 2px solid #2FA5EB;
+  }
+  .small-button{
+    padding:20px;
+    font-size: 14px;
+    background-color: #007BFF; /* Button background color */
+    color: white; /* Button text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 180px; /* Set button width */
+}
+
+.small-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+  .middle {
+    width: 100%;
+    border-bottom: 2px solid #f0f0f0;
+  }
+  
+  .middle div {
+    width: 1200px;
+    height: 400px;
+    font-family: calibri;
+  }
+  
+  .middle div p {
+    width: 1000px;
+    font-weight: bold;
+    height: 300px;
+    color: #fff;
+    opacity: 0.2;/* src/components/PatientInformation.css */
+
+/* General styles */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #333;
+    background: linear-gradient(to right, #ffffff, #e3f2fd);
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Top section */
+  .top {
+    background-color: #0d47a1;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: right;
+    font-size: 0.9em;
+  }
+  
+  .top a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+  }
+  
+  .top a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Logo and navigation */
+  .logo {
+    text-align: center;
+    margin: 40px 0;
+  }
+  
+  .logo img {
+    max-width: 600px;
+    vertical-align: middle;
+  }
+  
+  .logo h1 {
+    display: inline-block;
+    font-size: 2.5em;
+    margin-left: 20px;
+    vertical-align: middle;
+    color: #0d47a1;
+    font-weight: bold;
+  }
+  
+  /* Middle section */
+  .middle {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .middle p {
+    font-size: 1.5em;
+    color: #0d47a1;
+  }
+  
+  /* Form section */
+  .form-section {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 40px 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    color: #333;
+  }
+  
+  .form-section form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-section label {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    color: #0d47a1;
+  }
+  
+  .form-section input[type="text"], .form-section input[type="number"], .form-section select {
+    margin-bottom: 30px;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .form-section .checkbox-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-section .checkbox-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-section button {
+    margin-top: 30px;
+    padding: 15px;
+    font-size: 1.2em;
+    background-color: #0d47a1;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+  }
+  
+  .form-section button:hover {
+    background-color: #0a3781;
+  }
+    font-size: 50px;
+    background-color: #000;
+  }
+
+  /* src/components/PatientInformation.css */
+
+/* General styles */
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #333;
+  background: linear-gradient(to right, #ffffff, #e3f2fd);
+  margin: 0;
+  padding: 0;
+}
+
+/* Top section */
+.top {
+  background-color: #0d47a1;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: right;
+  font-size: 0.9em;
+}
+
+.top a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.top a:hover {
+  text-decoration: underline;
+}
+
+/* Logo and navigation */
+.logo {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.logo img {
+  max-width: 600px;
+  vertical-align: middle;
+}
+
+.logo h1 {
+  display: inline-block;
+  font-size: 2.5em;
+  margin-left: 20px;
+  vertical-align: middle;
+  color: #0d47a1;
+  font-weight: bold;
+}
+
+/* Middle section */
+.middle {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.middle p {
+  font-size: 1.5em;
+  color: #0d47a1;
+}
+
+/* Form section */
+.form-section {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 40px 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  color: #333;
+}
+
+.form-section form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-section label {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  color: #0d47a1;
+}
+
+.form-section input[type="text"], .form-section input[type="number"], .form-section select {
+  margin-bottom: 30px;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.form-section .checkbox-group {
+  margin-bottom: 20px;
+}
+
+.form-section .checkbox-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-section button {
+  margin-top: 30px;
+  padding: 15px;
+  font-size: 1.2em;
+  background-color: #0d47a1;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.form-section button:hover {
+  background-color: #0a3781;
+}
+  
+  .bottom {
+    width: 100%;
+    border-bottom: 2px solid #f0f0f0;
+  }
+  
+  .bottom div {
+    width: 1200px;
+    color: #fff;
+    font-family: calibri;
+    text-align: right;
+  }
+  
+  .bottom div table {
+    padding-top: 30px;
+    width: 1100px;
+    text-align: center;
+    color: gray;
+    font-size: 20px;
+  }
+  
+  .bottom_up {
+    width: 100%;
+    border-bottom: 2px solid #f0f0f0;
+  }
+  
+  .bottom_up div {
+    padding-top: 20px;
+    width: 1200px;
+    text-align: center;
+    font-family: forte;
+    font-size: 30px;
+    padding-bottom: 20px;
+  }
+  
+  .bottom_up div table {
+    padding-top: 30px;
+    font-size: 30px;
+    width: 1100px;
+    text-align: center;
+    font-family: calibri;
+  }
+
+  .nav_down {
+    width: 100%;
+    background-color: #2FA5EB !important;
+    border-bottom: 2px solid #f0f0f0;
+  }
+  
+  .nav_down div {
+    width: 1200px;
+    color: #fff;
+    background-color: #000;
+    font-family: calibri;
+    padding: 10px;
+    text-align: left;
+  }
+  
+    </style>
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Prediction</title>
+    <style>
+        /* Your existing styles... */
+        /* Add any additional styles needed for the new form */
+    </style>
+</head>
+<body>
+    <!-- Top Section -->
+    <div class="top">
+        <div><a href="login.html">LogIn</a>|<a href="#">SignUp</a></div>
+    </div>
+
+    <!-- Logo and Start Section -->
+    <div class="logo">
+        <div>
+            <table>
+                <tr>
+                    <td><img src="Logo.png" alt="Company Logo"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Middle Section -->
+    <div class="middle">
+        <div style="background-image:url('img3.jpeg');">
+            <p>
+                <br><br>
+                Sales Prediction Services <br>
+                <font size="5px">Empowering Your Business Decisions</font>
+            </p>
+        </div>
+    </div>
+
+    <!-- Bottom Section -->
+    <div class="bottom">
+        <div>
+            <table>
+                <tr>
+                    <td>Your success is our mission. At PredictCo, we provide top-quality predictive analytics with a commitment to excellence. Our experienced team is here to offer you personalized insights in a state-of-the-art facility.</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Bottom Up Section -->
+    <div class="bottom_up">
+        <div>
+            <table>
+                <tr>
+                    <td>Discover our comprehensive range of services, meet our experts, and explore how we prioritize your business success every step of the way.</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="nav_down">
+        <div>&copy; 2024. All rights reserved.</div>
+    </div>
+</body>
+</html>
+
+</html>
