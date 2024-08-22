@@ -41,6 +41,6 @@ rf_model = RandomForestRegressor(n_estimators=100, random_state=42)
 rf_model.fit(x_train, y_train)
 
 # Make predictions on the test set
-y_pred_rf = rf_model.predict(x_test)
+#y_pred_rf = rf_model.predict(x_test)
 
-pickle.dump(y_pred_rf, open('best_sales_prediction_model.pkl', 'wb'))
+pickle.dump(rf_model, open('best_sales_prediction_model.pkl', 'wb'))
